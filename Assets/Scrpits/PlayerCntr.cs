@@ -27,11 +27,20 @@ public class PlayerCntr : MonoBehaviour
     public int score;
     public Text scoreText;
 
+    public GameObject finishText;
+    public Text scoreFinish;
+
+    public float timerStart = 0;
+    public Text timerFinish;
+    public float timerFinishPlayer;
+
     public GameObject[] button;
 
     public bool GameOver = true;
 
     private bool facingRight = true;
+
+    public float timerAttack;
 
 
     public Text HpBar;
@@ -39,12 +48,13 @@ public class PlayerCntr : MonoBehaviour
 
     private void Start()
     {
-
-
+        timerFinish.text = timerStart.ToString();
+        finishText.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         rbSprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         scoreText.text = score.ToString();
+        scoreFinish.text = score.ToString();
         HpBar.text = Hp.ToString();
     }
 
@@ -91,7 +101,7 @@ public class PlayerCntr : MonoBehaviour
             animator.SetBool("Ground", false);
             rb.AddForce(new Vector2(0, jumpForce));
         }
-
+        TimerFinish();
         //   if (Input.GetMouseButton(0))
         //   {
         //       Fire();
@@ -101,17 +111,23 @@ public class PlayerCntr : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            timerAttack = 0f;
             isAttack = true;
             animator.SetBool("isAttack", isAttack);
+            timerAttack += Time.deltaTime;
             Shoot();
-            isAttack = false;          // Ñäåëàòü âûõîä èç àíèìàöèè
-            animator.SetBool("isAttack", isAttack);
+           // if (Input.GetMouseButtonUp(0))
+           // isAttack = false;          // Ñäåëàòü âûõîä èç àíèìàöèè
+           // animator.SetBool("isAttack", isAttack);
         }
+        else if (Input.GetMouseButtonUp(0)) {
+            isAttack = false;         
+            animator.SetBool("isAttack", isAttack);}
 
 
 
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
         }
@@ -155,6 +171,10 @@ public class PlayerCntr : MonoBehaviour
             GetComponent<PlayerCntr>().speed = 0;
             button[0].SetActive(true);
             button[1].SetActive(true);
+            finishText.SetActive(true);
+            scoreFinish.text = score.ToString();
+            timerFinishPlayer = timerStart;
+            timerFinish.text = Mathf.Round(timerFinishPlayer).ToString();
         }
     }
 
@@ -163,8 +183,7 @@ public class PlayerCntr : MonoBehaviour
         Debug.Log("Âû óáèòû");
         animator.SetInteger("State", 9);
         GetComponent<PlayerCntr>().speed = 0;
-        button[0].SetActive(true);
-        button[1].SetActive(true);
+        
         Destroy(gameObject, 0.9f);
     }
 
@@ -190,6 +209,7 @@ public class PlayerCntr : MonoBehaviour
     {
         score += count;
         scoreText.text = score.ToString();
+        
     }
 
     public void TakePlayerDamage(int damage)
@@ -204,5 +224,10 @@ public class PlayerCntr : MonoBehaviour
     void Shoot()
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
+    }
+    private void TimerFinish()
+    {
+        timerStart += Time.deltaTime;
+        timerFinish.text = Mathf.Round(timerStart).ToString();
     }
 }
