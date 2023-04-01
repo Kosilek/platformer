@@ -6,8 +6,19 @@ public class CameraMoov : MonoBehaviour
 {
 
     public GameObject[] button;
-
     public Transform trackingObject;
+
+     public int index;
+
+    private void Awake()
+    {
+
+    }
+
+    private void Start()
+    {
+     
+    }
 
     private void Update()
     {

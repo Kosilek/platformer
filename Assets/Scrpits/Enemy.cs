@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     // private Transform target;   Ïðèäóìàòü êàê îáüåäèíèòü ñ îñí. Äâèæåíèåì
     // public float stoppingDistance;   Ïðèäóìàòü êàê îáüåäèíèòü ñ îñí. Äâèæåíèåì
     private SpriteRenderer rbSpriteMob;
+    private Material matBlink;
+    private Material matDefault;
 
     // public float Jumping;
     public float speedMob;
@@ -45,6 +47,9 @@ public class Enemy : MonoBehaviour
         // gameObject.GetComponent<Text>().enabled = false;
         //canvas.gameObject.SetActive(false);
         // target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();     Ïðèäóìàòü êàê îáüåäèíèòü ñ îñí. Äâèæåíèåì
+   
+        matBlink = Resources.Load("EnemyBlink", typeof(Material)) as Material;
+        matDefault = rbSpriteMob.material;
     }
 
     private void Update()
@@ -150,7 +155,14 @@ public class Enemy : MonoBehaviour
         {
             Death();
         }
-
+        if(collision.CompareTag("bullet"))
+        {
+            rbSpriteMob.material = matBlink;
+            if (Hp > 0)
+            {
+                Invoke("ResetMaterial", .2f);
+            }
+        }
         //   if (collision.gameObject.tag == "bullet")
         //    {
         //        gameObject.GetComponent<Text>().enabled = true;
@@ -161,6 +173,10 @@ public class Enemy : MonoBehaviour
         //  }
     }
 
+    void ResetMaterial()
+    {
+        rbSpriteMob.material = matDefault;
+    }
     private void Death()
     {
      //   Debug.Log("Ìîá óáèò");
