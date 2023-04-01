@@ -7,7 +7,10 @@ using UnityEngine.UI;
 
 public class PlayerCntr : MonoBehaviour
 {
-    
+    private SpriteRenderer sprite;
+    private Material matBlink;
+    private Material matDefault;
+
     public bool isAttack;
     public float speed;
     public float jumpForce;
@@ -35,6 +38,10 @@ public class PlayerCntr : MonoBehaviour
         scoreText.text = score.ToString();
         scoreFinish.text = score.ToString();
         HpBar.text = Hp.ToString();
+
+        sprite = GetComponent<SpriteRenderer>();
+        matBlink = Resources.Load("EnemyBlink", typeof(Material)) as Material;
+        matDefault = sprite.material;
     }
 
     private void FixedUpdate()
@@ -46,13 +53,11 @@ public class PlayerCntr : MonoBehaviour
         }
         else animator.SetInteger("State", 0);
 
-        //animator.SetBool("Ground", isGrounder);
-       // animator.SetFloat("vSpeed", rb.velocity.y);
     }
     public void Run()
     {
         float move = Input.GetAxis("Horizontal");
-       // animator.SetFloat("Speed", Mathf.Abs(move));
+
 
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
         if (move > 0 && !facingRight)
@@ -66,8 +71,6 @@ public class PlayerCntr : MonoBehaviour
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
     }
-
-    
 
     private void Update()
     {
@@ -86,9 +89,7 @@ public class PlayerCntr : MonoBehaviour
             animator.SetBool("isAttack", isAttack);
             timerAttack += Time.deltaTime;
             Shoot();
-           // if (Input.GetMouseButtonUp(0))
-           // isAttack = false;          // Ñäåëàòü âûõîä èç àíèìàöèè
-           // animator.SetBool("isAttack", isAttack);
+
         }
         else if (Input.GetMouseButtonUp(0)) {
             isAttack = false;         
@@ -108,8 +109,13 @@ public class PlayerCntr : MonoBehaviour
           if (collision.gameObject.tag == "Enemy")
           {
               Enemy mob = collision.gameObject.GetComponent<Enemy>();
-              if (mob != null)
-              TakePlayerDamage(mob.DamagePlayer);
+            if (mob != null)
+            {
+                sprite.material = matBlink;
+                if (Hp > 0)
+                    Invoke("ResetMaterial", .2f);
+                TakePlayerDamage(mob.DamagePlayer);
+            }
           }
     }
 
@@ -146,7 +152,10 @@ public class PlayerCntr : MonoBehaviour
         Destroy(gameObject, 0.9f);
     }
 
-    
+    void ResetMaterial()
+    {
+        sprite.material = matDefault;
+    }
 
     public void AddCoin(int count)
     {

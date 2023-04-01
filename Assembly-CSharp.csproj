@@ -62,12 +62,12 @@
     <Compile Include="Assets\Scrpits\Restart.cs" />
     <Compile Include="Assets\Scrpits\Coins.cs" />
     <Compile Include="Assets\Scrpits\Enemy.cs" />
+    <Compile Include="Assets\Scrpits\startPlaer.cs" />
     <Compile Include="Assets\Scrpits\CameraMoov.cs" />
     <Compile Include="Assets\Scrpits\Finish.cs" />
     <Compile Include="Assets\Scrpits\PlayerCntrButton.cs" />
     <Compile Include="Assets\Scrpits\Bullet2D.cs" />
     <Compile Include="Assets\Scrpits\startPlayer.cs" />
-    <Compile Include="Assets\Scrpits\startPlaer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
