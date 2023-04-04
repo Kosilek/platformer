@@ -1,35 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerMain : MonoBehaviour
 {
-    //private SpriteRenderer sprite;
-   // private Material matBlink;
-  //  private Material matDefault;
+    private SpriteRenderer sprite;
+    private Material matBlink;
+    private Material matDefault;
     private Rigidbody2D rb;
     private Animator animator;
     private bool facingRight = true;
     private bool isAttack;
 
-    public UnityEvent<int> HpBarEvent = new UnityEvent<int>();
+    public UnityEvent<float> HpBarEvent = new UnityEvent<float>();
 
     public float speed;
     public float jumpForce;
-    private bool isGrounder = false;
-    public GameObject Ground;
+    public bool isGrounder = false;
+  //  public GameObject Ground;
     public Transform firePoint;
     public GameObject bullet;
 
-    //public int hpBar;
+ //   public Transform groundDetection;
+  //  public float distance;
+ //   public int hpBar = 100;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-      //  sprite = GetComponent<SpriteRenderer>();
-      //  matBlink = Resources.Load("EnemyBlink", typeof(Material)) as Material;
-     //   matDefault = sprite.material;
+          sprite = GetComponent<SpriteRenderer>();
+         matBlink = Resources.Load("EnemyBlink", typeof(Material)) as Material;
+           matDefault = sprite.material;
     }
 
     private void FixedUpdate()
@@ -62,8 +65,18 @@ public class PlayerMain : MonoBehaviour
 
     private void Update()
     {
+       // RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
 
-        if (isGrounder && Input.GetKeyDown(KeyCode.Space))
+       // if (groundInfo.collider == false)
+       // {
+       //     isGrounder = false;
+       // }
+       // else if (groundInfo.collider == true)
+        //{
+        //    isGrounder = true;
+       // }
+
+            if (isGrounder && Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetBool("Ground", false);
             rb.AddForce(new Vector2(0, jumpForce));
@@ -97,7 +110,10 @@ public class PlayerMain : MonoBehaviour
        
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            sprite.material = matBlink;
+            Invoke("ResetMaterial", .2f);
             HpBarEvent.Invoke(collision.gameObject.GetComponent<Enemy>().DamagePlayer);
+            
         }
     }
 
@@ -142,10 +158,10 @@ public class PlayerMain : MonoBehaviour
         Destroy(gameObject, 0.9f);
     }
 
-   /* void ResetMaterial()
+    void ResetMaterial()
     {
         sprite.material = matDefault;
-    }*/
+    }
 
 
         //    scoreText.text = score.ToString();

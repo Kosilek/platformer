@@ -382,8 +382,6 @@
 "Assets/Scrpits/PlayerCntrButton.cs"
 "Assets/Scrpits/PlayerMain.cs"
 "Assets/Scrpits/Restart.cs"
-"Assets/Scrpits/startPlaer.cs"
-"Assets/Scrpits/startPlayer.cs"
 -langversion:9.0
 
 /deterministic

@@ -9,9 +9,11 @@ public class canvasManager : MonoBehaviour
 
     public int score;
 
-    private void Start()
+
+    private void Awake()
     {
         scoreText.text = score.ToString();
+
     }
 
     public void ScoreCoin(int coin)
@@ -21,4 +23,6 @@ public class canvasManager : MonoBehaviour
         scoreText.text = score.ToString();
 
     }
+
+
 }

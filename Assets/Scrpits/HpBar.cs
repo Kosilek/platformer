@@ -1,31 +1,45 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
 public class HpBar : MonoBehaviour
 {
-    private SpriteRenderer sprite;
-    private Material matBlink;
-    private Material matDefault;
+    public Image bar;
+    public float fill;
+    public float hp;
+    public Animator anim;
 
-    public int hpBar;
     private void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
-        matBlink = Resources.Load("EnemyBlink", typeof(Material)) as Material;
-        matDefault = sprite.material;
-    }
-    public void TakeDamage(int Damage)
-    {
-        hpBar = hpBar - Damage;
-        sprite.material = matBlink;
-        Invoke("ResetMaterial", .2f);
-
+        fill = 1f;
+     //   bar.fillAmount = fill;
     }
 
-    void ResetMaterial()
+    private void Update()
     {
-        sprite.material = matDefault;
+        bar.fillAmount = fill;
+
+        if (hp <= 0f)
+        {
+            Death();
+        }
     }
+    public void TakeDamage(float Damage)
+    {
+        hp -= Damage;
+        fill = (hp / 100);
+        
+    }
+    private void Death()
+    {
+        Debug.Log("Âû óáèòû");
+        anim.SetInteger("State", 9);
+     //   GetComponent<PlayerMain>().speed = 0;
+        //      button[0].SetActive(true);
+        //      button[1].SetActive(true);
+        Destroy(gameObject, 0.9f);
+    }
+
 }

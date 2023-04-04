@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,8 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer rbSpriteMob;
     private Material matBlink;
     private Material matDefault;
+
+    public UnityEvent<float> HpBarEvent = new UnityEvent<float>();
 
     public float speedMob;
     public float distance;
@@ -27,8 +30,8 @@ public class Enemy : MonoBehaviour
     private int currentTarget;
 
     //  public Text EnemyHp;
-    public int Hp;
-    public int DamagePlayer = 10;
+    //public float Hp;
+    public float DamagePlayer = 20f;
     // public GameObject enemyHp;
     private void Start()
     {
@@ -77,21 +80,19 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("bullet"))
         {
             rbSpriteMob.material = matBlink;
-            if (Hp > 0)
-            {
-                Invoke("ResetMaterial", .2f);
-            }
+            Invoke("ResetMaterial", .2f);
+            HpBarEvent.Invoke(collision.gameObject.GetComponent<Bullet2D>().damage);
         }
     }
 
  
-    void ResetMaterial()
+   void ResetMaterial()
     {
         rbSpriteMob.material = matDefault;
     }
     private void Death()
     {
-        animator.SetInteger("enemyState", 1);
+        animator.SetInteger("State", 9);
         GetComponent<Enemy>().speedMob = 0;
         gameObject.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
