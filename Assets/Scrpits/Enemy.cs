@@ -26,17 +26,15 @@ public class Enemy : MonoBehaviour
     public bool touchBlock;
     private int currentTarget;
 
-    public Text EnemyHp;
+    //  public Text EnemyHp;
     public int Hp;
-    public int DamagePlayer;
-    public GameObject enemyHp;
+    public int DamagePlayer = 10;
+    // public GameObject enemyHp;
     private void Start()
     {
         rbSpriteMob = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        EnemyHp.text = Hp.ToString();
-        enemyHp.SetActive(false); 
         matBlink = Resources.Load("EnemyBlink", typeof(Material)) as Material;
         matDefault = rbSpriteMob.material;
     }
@@ -76,7 +74,7 @@ public class Enemy : MonoBehaviour
         {
             Death();
         }
-        if(collision.CompareTag("bullet"))
+        if (collision.CompareTag("bullet"))
         {
             rbSpriteMob.material = matBlink;
             if (Hp > 0)
@@ -86,6 +84,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+ 
     void ResetMaterial()
     {
         rbSpriteMob.material = matDefault;
@@ -96,18 +95,19 @@ public class Enemy : MonoBehaviour
         GetComponent<Enemy>().speedMob = 0;
         gameObject.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-        enemyHp.SetActive(false);
+
         Destroy(gameObject, 0.7f);
     }
 
-    public void TakeDamage(int damage)
-    {
-        Hp -= damage;
-        enemyHp.SetActive(true);
-        EnemyHp.text = Hp.ToString();
-        if (Hp <= 0)
+    /*    public void TakeDamage(int damage)
         {
-            Death();
+            Hp -= damage;
+            enemyHp.SetActive(true);
+            EnemyHp.text = Hp.ToString();
+            if (Hp <= 0)
+            {
+                Death();
+            }
         }
-    }
+    }*/
 }

@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class MainManu : MonoBehaviour
 {
     public GameObject[] button;
+ 
+
+ 
 
     private void Start()
     {
@@ -20,15 +23,21 @@ public class MainManu : MonoBehaviour
         button[1].SetActive(false);
     }
 
-    public void Level1()
+ /*    public void LevelOne()
     {
-        SceneManager.LoadScene(1);
+        level[0].SetActive(false);
+        level[1].SetActive(true);
+        level[2].SetActive(false);
+        Instantiate(player);
     }
 
-    public void Level2()
+   public void LevelTwo()
     {
-        SceneManager.LoadScene(2);
-    }
+        level[0].SetActive(false);
+        level[1].SetActive(false);
+        level[2].SetActive(true);
+        Instantiate(player);
+    }*/
 
     public void Exit()
     {

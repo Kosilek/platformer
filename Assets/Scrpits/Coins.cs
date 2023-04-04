@@ -1,17 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Coins : MonoBehaviour
 {
-    public int count;
+    public UnityEvent<int> coinAddEvent = new UnityEvent<int>();
+    public int count = 5;
+  //  public int score;
+    /* private void OnTriggerEnter2D(Collider2D collision)
+     {
 
-    private void OnTriggerEnter2D(Collider2D other)
+         if(collision.CompareTag("Player"))
+         {
+             GetComponent<levelMenager>().AddCoin(count);
+             Destroy(gameObject);
+         }
+     }*/
+
+    public void AddCoin()
     {
-        if (other.tag == "Player")
-        {
-            other.GetComponent<PlayerCntr>().AddCoin(count);
-            Destroy(gameObject);
-        }
+        coinAddEvent.Invoke(count);//Попросить помощь...
+        Destroy(gameObject);
+
     }
 }

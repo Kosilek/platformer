@@ -10,6 +10,7 @@ TagManager:
   - blockR
   - Ground
   - bullet
+  - Coin
   layers:
   - Default
   - TransparentFX

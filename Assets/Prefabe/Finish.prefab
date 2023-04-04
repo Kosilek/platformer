@@ -8,9 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9045010339905539479}
+  - component: {fileID: 8604913109295700233}
   - component: {fileID: 9045010339905539476}
   - component: {fileID: 9045010339905539477}
+  - component: {fileID: 3002387774241445247}
   m_Layer: 0
   m_Name: Finish
   m_TagString: Finish
@@ -18,21 +19,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9045010339905539479
-Transform:
+--- !u!224 &8604913109295700233
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9045010339905539482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.37, y: 1.25, z: -0.12854207}
+  m_LocalPosition: {x: 0, y: 0, z: -0.12854207}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 54.489, y: 15.255}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &9045010339905539476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -71,4 +77,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca8947c367ed7b4e8d5f78aa942b2e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finishText: {fileID: 0}
+  timerStart: 0
+  timerFinish: {fileID: 0}
+  timerFinishPlayer: 0
+--- !u!222 &3002387774241445247
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045010339905539482}
+  m_CullTransparentMesh: 1

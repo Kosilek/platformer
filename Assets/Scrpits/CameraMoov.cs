@@ -5,29 +5,29 @@ using UnityEngine;
 public class CameraMoov : MonoBehaviour
 {
 
-    public GameObject[] button;
+    //public GameObject[] button;
     public Transform trackingObject;
 
-     public int index;
+     //public int index;
 
-    private void Awake()
-    {
+ //   private void Awake()
+   // {
 
-    }
+    //}
 
-    private void Start()
-    {
+    //private void Start()
+    //{
      
-    }
+    //}
 
     private void Update()
     {
         transform.position = new Vector3(trackingObject.position.x, trackingObject.position.y, transform.position.z);
 
-        if (trackingObject == null)
-        {
-            button[0].SetActive(true);
-            button[1].SetActive(true);
-        }
+     ////   if (trackingObject == null)
+     //   {
+       //     button[0].SetActive(true);
+         //   button[1].SetActive(true);
+       // }
     }
 }

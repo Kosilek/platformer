@@ -19,7 +19,7 @@ public class Bullet2D : MonoBehaviour
         if (other.tag == "Enemy")
         {
 
-            enemy.TakeDamage(damage);
+          //  enemy.TakeDamage(damage);
         }
         if (other.tag != "Player")
             Destroy(gameObject);

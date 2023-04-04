@@ -56,8 +56,9 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scrpits\PlayerCntr.cs" />
     <Compile Include="Assets\Scrpits\MainManu.cs" />
+    <Compile Include="Assets\Scrpits\PlayerMain.cs" />
+    <Compile Include="Assets\Scrpits\levelMenager.cs" />
     <Compile Include="Assets\Scrpits\DeathBlock.cs" />
     <Compile Include="Assets\Scrpits\Restart.cs" />
     <Compile Include="Assets\Scrpits\Coins.cs" />
@@ -68,6 +69,8 @@
     <Compile Include="Assets\Scrpits\PlayerCntrButton.cs" />
     <Compile Include="Assets\Scrpits\Bullet2D.cs" />
     <Compile Include="Assets\Scrpits\startPlayer.cs" />
+    <Compile Include="Assets\Scrpits\canvasManager.cs" />
+    <Compile Include="Assets\Scrpits\HpBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
