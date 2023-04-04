@@ -12,6 +12,8 @@ public class levelMenager : MonoBehaviour
     public GameObject[] level;
     public GameObject player;
     public GameObject Score;
+
+    public bool q = false;
   //  public GameObject HpBarEnemy;
   //  public GameObject HpBar;
     // public GameObject Coin;
@@ -27,7 +29,7 @@ public class levelMenager : MonoBehaviour
        // HpBar.SetActive(false);
     }
 
-
+   
     public void LevelOne()
     {
         level[0].SetActive(false);

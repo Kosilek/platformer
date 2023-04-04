@@ -14,7 +14,7 @@ public class PlayerMain : MonoBehaviour
     private bool facingRight = true;
     private bool isAttack;
 
-    public UnityEvent<float> HpBarEvent = new UnityEvent<float>();
+  //  public UnityEvent<float> HpBarEvent = new UnityEvent<float>();
 
     public float speed;
     public float jumpForce;
@@ -112,7 +112,7 @@ public class PlayerMain : MonoBehaviour
         {
             sprite.material = matBlink;
             Invoke("ResetMaterial", .2f);
-            HpBarEvent.Invoke(collision.gameObject.GetComponent<Enemy>().DamagePlayer);
+            Event.SendTakeDamage(collision.gameObject.GetComponent<Enemy>().DamagePlayer);
             
         }
     }

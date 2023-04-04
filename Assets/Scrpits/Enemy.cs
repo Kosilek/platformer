@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
 
     public UnityEvent<float> HpBarEvent = new UnityEvent<float>();
 
-    public float speedMob;
+    public float speed;
     public float distance;
     private bool moovingRight;
     public float rayDistance;
@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector2.right * speedMob * Time.deltaTime);
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
 
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
 
@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
     private void Death()
     {
         animator.SetInteger("State", 9);
-        GetComponent<Enemy>().speedMob = 0;
+        GetComponent<Enemy>().speed = 0;
         gameObject.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
 

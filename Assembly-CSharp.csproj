@@ -69,6 +69,8 @@
     <Compile Include="Assets\Scrpits\Finish.cs" />
     <Compile Include="Assets\Scrpits\PlayerCntrButton.cs" />
     <Compile Include="Assets\Scrpits\Bullet2D.cs" />
+    <Compile Include="Assets\Scrpits\RespawnPlayer.cs" />
+    <Compile Include="Assets\Scrpits\Event.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

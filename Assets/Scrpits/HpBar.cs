@@ -11,6 +11,11 @@ public class HpBar : MonoBehaviour
     public float hp;
     public Animator anim;
 
+
+    private void Awake()
+    {
+        Event.OnTakeDamage.AddListener(TakeDamage);
+    }
     private void Start()
     {
         fill = 1f;
@@ -36,7 +41,7 @@ public class HpBar : MonoBehaviour
     {
         Debug.Log("Âû óáèòû");
         anim.SetInteger("State", 9);
-     //   GetComponent<PlayerMain>().speed = 0;
+     //   GetComponent<>().speed = 0;
         //      button[0].SetActive(true);
         //      button[1].SetActive(true);
         Destroy(gameObject, 0.9f);

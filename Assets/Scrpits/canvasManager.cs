@@ -7,13 +7,13 @@ public class canvasManager : MonoBehaviour
 {
     public Text scoreText;
 
-    public int score;
+    public int score = 0;
 
 
     private void Awake()
     {
         scoreText.text = score.ToString();
-
+        Event.OnScoreCoin.AddListener(ScoreCoin);
     }
 
     public void ScoreCoin(int coin)
