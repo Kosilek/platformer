@@ -4,37 +4,35 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 
 public class Enemy : MonoBehaviour
 {
     private SpriteRenderer rbSpriteMob;
     private Material matBlink;
     private Material matDefault;
-
     public UnityEvent<float> HpBarEvent = new UnityEvent<float>();
-
     public float speed;
     public float distance;
-    private bool moovingRight;
+    [SerializeField] private bool moovingRight = true;
     public float rayDistance;
+    public float JumpFors;
     public bool isGrounderEnemy = false;
     public Transform groundCheckEnemy;
     float groundRadiusEnemy = 0.2f;
-
     Animator animator;
     private Rigidbody2D rb;
-
     public Transform groundDetection;
-
     public bool touchBlock;
     private int currentTarget;
-
-    //  public Text EnemyHp;
-    //public float Hp;
     public float DamagePlayer = 20f;
-    // public GameObject enemyHp;
+    public GameObject player;
+
+    public bool Test = false;
     private void Start()
     {
+        Physics2D.queriesStartInColliders = false;
         rbSpriteMob = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -45,9 +43,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
-
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
-
         if (groundInfo.collider == false)
         {
             if (moovingRight == true)
@@ -61,15 +57,52 @@ public class Enemy : MonoBehaviour
                 moovingRight = true;
             }
         }
+        if (moovingRight == true)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.localScale.x * Vector2.right, rayDistance);
+            JumpAndTarger(hit);
+        }
+        else if (moovingRight == false)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.localScale.x * Vector2.left, rayDistance);
+            JumpAndTarger(hit);
+        }  
+    }
+    private void JumpAndTarger(RaycastHit2D hit)
+    {  
+        if (hit)
+        {
+            if (hit.collider.name == "Player")
+            {
+                Test = true;
+            }
+            CheckBlock(hit, "block");
+            CheckBlock(hit, "Ground");
+        }
+    }
+    private void CheckBlock(RaycastHit2D hit ,string block)
+    {
+        if (hit.collider.tag == block)
+        {
+            rb.velocity = Vector2.up * JumpFors;
+            Debug.Log("!!!!");
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.localScale.x * Vector3.right * rayDistance);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.localScale.x * Vector3.left * rayDistance);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(groundDetection.position, groundDetection.position + Vector3.down * distance);
     }
     public void FixedUpdate()
     {
         isGrounderEnemy = Physics2D.OverlapCircle(groundCheckEnemy.position, groundRadiusEnemy);
         if (!isGrounderEnemy) return;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -81,11 +114,10 @@ public class Enemy : MonoBehaviour
         {
             rbSpriteMob.material = matBlink;
             Invoke("ResetMaterial", .2f);
+            // Event.SendTakeDamage(collision.gameObject.GetComponent<Bullet2D>().damage);
             HpBarEvent.Invoke(collision.gameObject.GetComponent<Bullet2D>().damage);
         }
     }
-
- 
    void ResetMaterial()
     {
         rbSpriteMob.material = matDefault;
@@ -96,19 +128,6 @@ public class Enemy : MonoBehaviour
         GetComponent<Enemy>().speed = 0;
         gameObject.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-
         Destroy(gameObject, 0.7f);
     }
-
-    /*    public void TakeDamage(int damage)
-        {
-            Hp -= damage;
-            enemyHp.SetActive(true);
-            EnemyHp.text = Hp.ToString();
-            if (Hp <= 0)
-            {
-                Death();
-            }
-        }
-    }*/
 }

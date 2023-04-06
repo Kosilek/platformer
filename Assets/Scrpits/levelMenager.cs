@@ -4,33 +4,49 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
+using System.Runtime.CompilerServices;
 
 public class levelMenager : MonoBehaviour
 {
-    public UnityEvent<int> hpEvent = new UnityEvent<int>();
-    public UnityEvent<int> hpEnemyEvent = new UnityEvent<int>();
-    public GameObject[] level;
     public GameObject player;
-    public GameObject Score;
+    // public GameObject[] dieButton;
+   // public GameObject Score;
+    public Transform spawn;
 
-    public bool q = false;
+    private void Awake()
+    {
+        Instantiate(player, spawn.position, spawn.rotation);
+    }
+
+    public void Restart()
+    {
+        string scene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(scene);
+    }
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+}
+
+   // public bool q = false;
   //  public GameObject HpBarEnemy;
   //  public GameObject HpBar;
     // public GameObject Coin;
    // public int coins = 0;
 
-    private void Start()
-    {
-        level[0].SetActive(true);
-        level[1].SetActive(false);
-        level[2].SetActive(false);
-        Score.SetActive(false);
+ //   private void Awake()
+  ////  {
+      //  level[0].SetActive(true);
+      ////  level[1].SetActive(false);
+      //  level[2].SetActive(false);
+      //  Score.SetActive(false);
+      //  dieButton[0].SetActive(false);
+      //  dieButton[1].SetActive(!false);
        // HpBarEnemy.SetActive(false);
-       // HpBar.SetActive(false);
-    }
-
-   
-    public void LevelOne()
+       // HpBar.SetActive(false);  
+   /* public void LevelOne()
     {
         level[0].SetActive(false);
         level[1].SetActive(true);
@@ -49,7 +65,51 @@ public class levelMenager : MonoBehaviour
         Instantiate (player);
         Score.SetActive(true);
        // HpBar.SetActive(true);
+    }*/
+   /* public void Restart()
+    {
+        level[0].SetActive(false);
+        level[1].SetActive(false);
+        level[2].SetActive(false);
+        Score.SetActive(false);
+        int checklevel = 0;
+        checklevel = CheckLevel();
+        switch (checklevel)
+        {
+            case 1:
+                level[0].SetActive(false);
+                level[1].SetActive(true);
+                level[2].SetActive(false);
+                Score.SetActive(true);
+                break;
+            case 2:
+                level[0].SetActive(false);
+                level[1].SetActive(false);
+                level[2].SetActive(true);
+                Score.SetActive(true);
+                break;
+        }
+    }
+    
+    private int CheckLevel()
+    {
+        int level = 0;
+        if (GameObject.Find("level1"))
+        {
+            level = 1;
+        } else if (GameObject.Find("level2"))
+        {
+            level = 2;
+        }
+        return level;
     }
 
+    public void Menu()
+    {
+        
+        level[1].SetActive(false);
+        level[2].SetActive(false);
+        Score.SetActive(false);
+        level[0].SetActive(true);
+    }*/
 
-}

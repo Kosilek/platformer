@@ -16,15 +16,7 @@ public class Bullet2D : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Enemy enemy = other.GetComponent<Enemy>();
-        if (other.tag == "Enemy")
-        {
-
-          //  enemy.TakeDamage(damage);
-        }
         if (other.tag != "Player")
             Destroy(gameObject);
-
-        // if (other.tag != "Enemy")
-        //   Destroy(gameObject);
     }
 }

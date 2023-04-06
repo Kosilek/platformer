@@ -56,7 +56,9 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scrpits\startPlayer.cs" />
     <Compile Include="Assets\Scrpits\HpBar.cs" />
+    <Compile Include="Assets\spawnMob.cs" />
     <Compile Include="Assets\Scrpits\MainManu.cs" />
     <Compile Include="Assets\Scrpits\canvasManager.cs" />
     <Compile Include="Assets\Scrpits\PlayerMain.cs" />
@@ -65,12 +67,14 @@
     <Compile Include="Assets\Scrpits\Restart.cs" />
     <Compile Include="Assets\Scrpits\Coins.cs" />
     <Compile Include="Assets\Scrpits\Enemy.cs" />
+    <Compile Include="Assets\Scrpits\Hightscore.cs" />
     <Compile Include="Assets\Scrpits\CameraMoov.cs" />
     <Compile Include="Assets\Scrpits\Finish.cs" />
     <Compile Include="Assets\Scrpits\PlayerCntrButton.cs" />
-    <Compile Include="Assets\Scrpits\Bullet2D.cs" />
-    <Compile Include="Assets\Scrpits\RespawnPlayer.cs" />
     <Compile Include="Assets\Scrpits\Event.cs" />
+    <Compile Include="Assets\Scrpits\RespawnPlayer.cs" />
+    <Compile Include="Assets\Scrpits\Bullet2D.cs" />
+    <Compile Include="Assets\nameBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

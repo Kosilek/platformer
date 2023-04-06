@@ -224,14 +224,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  speedMob: 2
+  speed: 0
   distance: 2
+  moovingRight: 1
   rayDistance: 2
+  JumpFors: 0
   isGrounderEnemy: 0
   groundCheckEnemy: {fileID: 8263404663573086659}
+  block: {fileID: 8588696254509997258, guid: 212e896b1dee05644a5f6c8c4cc73ce5, type: 3}
   groundDetection: {fileID: 8263404665106246527}
   touchBlock: 0
-  DamagePlayer: 50
+  DamagePlayer: 10
+  player: {fileID: 987382172338805962, guid: 0f4c0aa4b99132843bd3e0241dedc464, type: 3}
 --- !u!95 &8263404664946352151
 Animator:
   serializedVersion: 5

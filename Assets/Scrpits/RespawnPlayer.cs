@@ -1,21 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RespawnPlayer : MonoBehaviour
 {
-    public bool q;
-    public GameObject player;
+    public GameObject[] button;
+ //   public Transform spawnMob;
+ //   public GameObject enemy;
+    private void Start()
+    {
+        button[0].SetActive(false);
+        button[1].SetActive(false);
+   //     Instantiate(enemy, spawnMob.position, spawnMob.rotation);
+    }
     private void Update()
     {
         if (GameObject.Find("Player(Clone)") == null)
         {
-            q = false;
-            Instantiate(player);
+            button[0].SetActive(true); button[1].SetActive(true);
         }
-        else if (GameObject.Find("Player(Clone)") != null)
-        {
-            q = true;
-        }
+    }
+
+    public void Restart()
+    {
+
     }
 }

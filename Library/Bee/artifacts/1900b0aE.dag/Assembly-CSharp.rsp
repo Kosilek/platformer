@@ -369,6 +369,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
+"Assets/nameBox.cs"
 "Assets/Scrpits/Bullet2D.cs"
 "Assets/Scrpits/CameraMoov.cs"
 "Assets/Scrpits/canvasManager.cs"
@@ -377,6 +378,7 @@
 "Assets/Scrpits/Enemy.cs"
 "Assets/Scrpits/Event.cs"
 "Assets/Scrpits/Finish.cs"
+"Assets/Scrpits/Hightscore.cs"
 "Assets/Scrpits/HpBar.cs"
 "Assets/Scrpits/levelMenager.cs"
 "Assets/Scrpits/MainManu.cs"
@@ -384,6 +386,8 @@
 "Assets/Scrpits/PlayerMain.cs"
 "Assets/Scrpits/RespawnPlayer.cs"
 "Assets/Scrpits/Restart.cs"
+"Assets/Scrpits/startPlayer.cs"
+"Assets/spawnMob.cs"
 -langversion:9.0
 
 /deterministic

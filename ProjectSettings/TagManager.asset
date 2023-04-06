@@ -11,6 +11,9 @@ TagManager:
   - Ground
   - bullet
   - Coin
+  - block
+  - Start
+  - qqqq
   layers:
   - Default
   - TransparentFX

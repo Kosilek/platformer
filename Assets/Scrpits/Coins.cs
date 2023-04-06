@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class Coins : MonoBehaviour
 {
-   // public UnityEvent<int> coinAddEvent = new UnityEvent<int>();
     public int count = 5;
 
 
@@ -14,6 +13,5 @@ public class Coins : MonoBehaviour
     {
         Event.SendScoreCoin(count);
         Destroy(gameObject);
-///////////
     }
 }

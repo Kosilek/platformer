@@ -19,7 +19,6 @@ public class HpBar : MonoBehaviour
     private void Start()
     {
         fill = 1f;
-     //   bar.fillAmount = fill;
     }
 
     private void Update()
@@ -41,9 +40,6 @@ public class HpBar : MonoBehaviour
     {
         Debug.Log("Âû óáèòû");
         anim.SetInteger("State", 9);
-     //   GetComponent<>().speed = 0;
-        //      button[0].SetActive(true);
-        //      button[1].SetActive(true);
         Destroy(gameObject, 0.9f);
     }
 
