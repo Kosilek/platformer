@@ -11,13 +11,22 @@ public class levelMenager : MonoBehaviour
 {
     public GameObject player;
     // public GameObject[] dieButton;
-   // public GameObject Score;
+    // public GameObject Score;
+    public GameObject[] levelOnject;
     public Transform spawn;
+    private int level;
 
     private void Awake()
     {
+        DeactivityLevel();
+        if (PlayerPrefs.HasKey("Level"))
+        {
+            level = PlayerPrefs.GetInt("Level");
+        }
+        levelOnject[level].SetActive(true);
         Instantiate(player, spawn.position, spawn.rotation);
     }
+
 
     public void Restart()
     {
@@ -27,6 +36,12 @@ public class levelMenager : MonoBehaviour
     public void Menu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    private void DeactivityLevel()
+    {
+        levelOnject[0].SetActive(false);
+        levelOnject[1].SetActive(false);
     }
 }
 

@@ -44,6 +44,20 @@ public class canvasManager : MonoBehaviour
         Event.OnFinish.AddListener(Finish);
     }
 
+  /*  private void Update()
+    {
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            // button[0].SetActive(true); button[1].SetActive(true);
+            Debug.Log("Жив");
+        } else if (GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            Debug.Log("Мертв");
+            button[0].SetActive(true);
+            button[1].SetActive(true);
+        }
+    }*/
+
     public void ScoreCoin(int coin)
     {
 

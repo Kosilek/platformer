@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class MainManu : MonoBehaviour
 {
     public GameObject[] button;
-
     public GameObject records;
     public Text recordsScoreText;
     public Text recordsTimeText;
@@ -18,6 +17,9 @@ public class MainManu : MonoBehaviour
 
     public GameObject conditionsLevel2;
     public GameObject recordsLevel2;
+    public GameObject buttonDifficultyObject;
+
+
     private void Start()
     {
         if (PlayerPrefs.HasKey("SaveScore"))
@@ -28,6 +30,7 @@ public class MainManu : MonoBehaviour
         {
             recordsTime = PlayerPrefs.GetFloat("SaveTime");
         }
+        buttonDifficultyObject.SetActive(false);
         recordsScoreText.text = ("Очки: " + recordsScore);
         recordsTimeText.text = ("Время: " + recordsTime);
         records.SetActive(false);
@@ -49,17 +52,27 @@ public class MainManu : MonoBehaviour
 
     public void Level1()
     {
-        SceneManager.LoadScene("level1");
+        button[2].SetActive(false);
+        button[3].SetActive(false);
+        conditionsLevel2.SetActive(false);
+        records.SetActive(false);
+        PlayerPrefs.SetInt("Level", 0);
+        buttonDifficultyObject.SetActive(true);
     }
 
     public void Level2() 
     {
-        SceneManager.LoadScene("level2");
+        button[2].SetActive(false);
+        button[3].SetActive(false);
+        records.SetActive(false);
+        conditionsLevel2.SetActive(false);
+        PlayerPrefs.SetInt("Level", 1);
+        buttonDifficultyObject.SetActive(true);
     }
 
     private void CheckCoinLevel2(int score)
     {
-        if (score >= 40)
+        if (score >= 19)
         {
             button3Text.color = Color.red;
             recordsLevel2.SetActive(true);
@@ -73,6 +86,31 @@ public class MainManu : MonoBehaviour
             button[3].GetComponent<Button>().interactable = false;
         }
     }
+    
+   // private void ChoiceDifficulty()
+  //  {
+   //     buttonDifficultyObject.SetActive(true);
+        
+  //  }
+
+    public void EasyDifficulty()
+    {
+        PlayerPrefs.SetString("Difficulty", "easy");
+        SceneManager.LoadScene("level1");
+    }
+
+    public void NormalDifficulty()
+    {
+        PlayerPrefs.SetString("Difficulty", "normal");
+        SceneManager.LoadScene("level1");
+    }
+
+    public void HatdDifficulty()
+    {
+        PlayerPrefs.SetString("Difficulty", "hard");
+        SceneManager.LoadScene("level1");
+    }
+
  /*    public void LevelOne()
     {
         level[0].SetActive(false);

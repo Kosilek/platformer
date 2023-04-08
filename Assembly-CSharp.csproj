@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scrpits\Restart.cs" />
     <Compile Include="Assets\Scrpits\Coins.cs" />
     <Compile Include="Assets\Scrpits\Enemy.cs" />
+    <Compile Include="Assets\nameBox.cs" />
     <Compile Include="Assets\Scrpits\Hightscore.cs" />
     <Compile Include="Assets\Scrpits\CameraMoov.cs" />
     <Compile Include="Assets\Scrpits\Finish.cs" />
@@ -74,7 +75,6 @@
     <Compile Include="Assets\Scrpits\Event.cs" />
     <Compile Include="Assets\Scrpits\RespawnPlayer.cs" />
     <Compile Include="Assets\Scrpits\Bullet2D.cs" />
-    <Compile Include="Assets\nameBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1240945138499459563}
   - component: {fileID: 4914980541496571907}
-  - component: {fileID: 5906551444474159019}
+  - component: {fileID: 1040278777011097689}
+  - component: {fileID: 1320466354008488857}
   - component: {fileID: 9153638922535854552}
   - component: {fileID: 599658390390923783}
   - component: {fileID: 6620559502529780678}
-  - component: {fileID: 4355236704359456834}
   - component: {fileID: 4579815037880847663}
   m_Layer: 0
   m_Name: Player
@@ -36,7 +36,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8503345828291035168}
-  - {fileID: 3189032692659092158}
   - {fileID: 2495146720550188178}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,7 +92,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5906551444474159019
+--- !u!61 &1040278777011097689
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +105,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.06921446}
+  m_Offset: {x: 0, y: 0.091676205}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -117,8 +116,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.94666666, y: 0.7682378}
+  m_Size: {x: 0.94666666, y: 0.72331434}
   m_EdgeRadius: 0
+--- !u!70 &1320466354008488857
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987382172338805962}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.15749696, y: -0.35965365}
+  m_Size: {x: 0.63873506, y: 0.17094733}
+  m_Direction: 1
 --- !u!50 &9153638922535854552
 Rigidbody2D:
   serializedVersion: 4
@@ -172,6 +187,7 @@ MonoBehaviour:
   isGrounder: 1
   firePoint: {fileID: 8503345828291035168}
   bullet: {fileID: 5593451851110199981, guid: c555a19fe371ab847955d75b3c02072e, type: 3}
+  distance: 0.6
 --- !u!114 &6620559502529780678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,22 +204,6 @@ MonoBehaviour:
   fill: 0
   hp: 100
   anim: {fileID: 4579815037880847663}
---- !u!58 &4355236704359456834
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987382172338805962}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.16, y: -0.37983572}
-  serializedVersion: 2
-  m_Radius: 0.066487074
 --- !u!95 &4579815037880847663
 Animator:
   serializedVersion: 5
@@ -256,37 +256,6 @@ Transform:
   m_Father: {fileID: 1240945138499459563}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4538919784139857723
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3189032692659092158}
-  m_Layer: 0
-  m_Name: groundDetection
-  m_TagString: Untagged
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3189032692659092158
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4538919784139857723}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.172, y: -0.258, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1240945138499459563}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3316915417432456906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -304,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 912126565700864600, guid: 71bca54fe037f1e44b7ca05ca3a3455a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 912126565700864600, guid: 71bca54fe037f1e44b7ca05ca3a3455a, type: 3}
       propertyPath: m_AnchorMax.x

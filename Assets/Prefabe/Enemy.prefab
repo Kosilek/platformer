@@ -137,7 +137,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0030249953, y: -0.0015124083}
+  m_Offset: {x: -0.0030249953, y: -0.00095945597}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -148,7 +148,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.680617, y: 0.9842589}
+  m_Size: {x: 0.680617, y: 0.983153}
   m_EdgeRadius: 0
 --- !u!61 &8263404664946352148
 BoxCollider2D:
@@ -224,18 +224,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  speed: 0
+  speed: 2
   distance: 2
   moovingRight: 1
-  rayDistance: 2
-  JumpFors: 0
+  rayDistance: 1.5
+  JumpFors: 8
   isGrounderEnemy: 0
   groundCheckEnemy: {fileID: 8263404663573086659}
-  block: {fileID: 8588696254509997258, guid: 212e896b1dee05644a5f6c8c4cc73ce5, type: 3}
   groundDetection: {fileID: 8263404665106246527}
   touchBlock: 0
   DamagePlayer: 10
-  player: {fileID: 987382172338805962, guid: 0f4c0aa4b99132843bd3e0241dedc464, type: 3}
+  stopDistance: 2
+  speedAngry: 0.2
+  isGrounder: 0
+  Test: 0
 --- !u!95 &8263404664946352151
 Animator:
   serializedVersion: 5

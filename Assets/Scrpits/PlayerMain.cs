@@ -19,6 +19,7 @@ public class PlayerMain : MonoBehaviour
     public bool isGrounder = false;
     public Transform firePoint;
     public GameObject bullet;
+    public float distance;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,6 +28,7 @@ public class PlayerMain : MonoBehaviour
          matBlink = Resources.Load("EnemyBlink", typeof(Material)) as Material;
            matDefault = sprite.material;
     }
+
     private void FixedUpdate()
     {
         if (Input.GetAxis("Horizontal") != 0)
@@ -36,6 +38,7 @@ public class PlayerMain : MonoBehaviour
         }
         else animator.SetInteger("State", 0);
     }
+
     public void Run()
     {
         float move = Input.GetAxis("Horizontal");
@@ -45,14 +48,21 @@ public class PlayerMain : MonoBehaviour
         else if (move < 0 && facingRight)
             Flip();
     }
+
     private void Flip()
     {
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
     }
+
     private void Update()
     {
-            if (isGrounder && Input.GetKeyDown(KeyCode.Space))
+        RaycastHit2D groundInfo = Physics2D.Raycast(transform.position, Vector2.down, distance);
+        if (groundInfo.collider != null)
+        {
+            isGrounder = true;
+        } else if (groundInfo.collider == null) isGrounder = false;
+        if (isGrounder && Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetBool("Ground", false);
             rb.AddForce(new Vector2(0, jumpForce));
@@ -72,10 +82,10 @@ public class PlayerMain : MonoBehaviour
             animator.SetBool("isAttack", isAttack);
         }
     }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
-            isGrounder = true;
+
        
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -85,20 +95,14 @@ public class PlayerMain : MonoBehaviour
             HpBarEvent.Invoke(collision.gameObject.GetComponent<Enemy>().DamagePlayer);
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-            isGrounder = false;
 
-
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "trap")
+        if (collision.CompareTag("trap"))
         {
             Death();
         }
-        if (collision.gameObject.tag == "Finish")
+        if (collision.CompareTag("Finish"))
         {
             speed = 0;
             animator.SetInteger("State", 7);
@@ -109,7 +113,13 @@ public class PlayerMain : MonoBehaviour
         }
     }
 
-    private void Death()
+    private void OnDrawGizmos()
+    {
+         Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.localScale.x * Vector3.down * distance);
+    }
+
+        private void Death()
     {
         Debug.Log("Âû óáèòû");
         animator.SetInteger("State", 9);
@@ -121,6 +131,7 @@ public class PlayerMain : MonoBehaviour
     {
         sprite.material = matDefault;
     }
+
         void Shoot()
         {
             Instantiate(bullet, firePoint.position, firePoint.rotation);
